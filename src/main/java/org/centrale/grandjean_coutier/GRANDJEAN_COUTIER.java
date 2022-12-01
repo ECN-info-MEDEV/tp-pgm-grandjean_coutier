@@ -16,14 +16,11 @@ import java.util.Scanner;
 public class GRANDJEAN_COUTIER {
 
     public static void main(String[] args) throws FileNotFoundException {
-        
-        File doc = new File("C:\\Users\\Laure\\OneDrive\\Documents\\EI2\\MEDEV\\tp-pgm-grandjean_coutier\\src\\main\\resources\\brain.pgm");
-        Scanner obj = new Scanner(doc);
-
-        while (obj.hasNextLine()){
-            System.out.println(obj.nextLine());
-            System.out.println("NOUVELLE LIGNE");
- 
-        }
+            
+        PGM objet = new PGM();
+        objet.Lecture("C:\\Users\\Laure\\OneDrive\\Documents\\EI2\\MEDEV\\tp-pgm-grandjean_coutier\\src\\main\\resources\\baboon.pgm");
+        System.out.println(objet.getTaille_x());
+        System.out.println(objet.getTaille_y());
+        System.out.println (objet.getImage());
     }   
 }
