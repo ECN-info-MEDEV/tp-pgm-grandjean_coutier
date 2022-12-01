@@ -11,6 +11,12 @@ package org.centrale.grandjean_coutier;
 public class TestManon {
     public static void main(String[] args) {
         PGM pgm = new PGM();
+        pgm.setTaille_x(90);
+        pgm.setTaille_y(2);
+        int i;
+        for (i=0; i<=180; i++){
+            pgm.getImage().add(i);
+        }
         pgm.ecriture("D:\\Documents\\Centrale\\EI2\\P2\\MEDEV\\TP3\\GRANDJEAN_COUTIER\\GRANDJEAN_COUTIER\\src\\main\\resources", "test");
     }
 
