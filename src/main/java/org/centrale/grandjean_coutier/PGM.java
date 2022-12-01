@@ -106,11 +106,30 @@ public class PGM {
             if (numLigne > 4){
                 listeNombreString = obj.nextLine().split(" ");
                 for (String s: listeNombreString){
-                image.add(Integer.parseInt(s));
+                    if (!s.equals("")){
+                        image.add(Integer.parseInt(s));
+                    }
                 }
             }
+            
             else if (numLigne == 3){
+                listeNombreString = obj.nextLine().split(" ");
+                int coordonnee = 0;
+                for (String s: listeNombreString){
+                    if (!s.equals("")){
+                        if (coordonnee  == 0){
+                            taille_x = Integer.parseInt(s);
+                        }
+                        else{
+                            taille_y = Integer.parseInt(s);
+                        }
+                        coordonnee = 1; 
+                    }
+                }
                 
+            }
+            else {
+                obj.nextLine();
             }
             
         }
