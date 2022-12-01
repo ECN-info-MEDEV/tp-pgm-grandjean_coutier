@@ -4,9 +4,15 @@
  */
 package org.centrale.grandjean_coutier;
 
+
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Scanner;
 
 /**
@@ -86,6 +92,43 @@ public class PGM {
      */
     public void setImage(ArrayList<Integer> image) {
         this.image = image;
+    }
+    
+    //AUTRES MÉTHODES
+    
+    /**
+     * Méthode créant une image PGM dans un chemin d'accès donné
+     * @param sourcePath chemin d'accès où l'image doit être créée
+     * @param filename nom de l'image
+     */
+    public void ecriture(String sourcePath, String filename){
+            
+        BufferedWriter bufferedWriter=null;
+
+        try{
+            //Creation du BufferedWriter
+            bufferedWriter = new BufferedWriter(new FileWriter(sourcePath + "\\" + filename +".pgm"));
+            //Ecriture du fichier : en-tête
+            bufferedWriter.write("P2\n");
+            bufferedWriter.write("#\n");
+            bufferedWriter.write(this.taille_x + " " + this.taille_y + "\n");
+            bufferedWriter.write("255\n");
+            
+        }catch (FileNotFoundException ex){
+            System.out.println("Le fichier image n'a pas pu être créé");
+        }catch(IOException ex){
+            System.out.println("L'écriture du fichier image a échoué");
+        }
+        finally{
+            try{
+                if(bufferedWriter!=null){
+                    bufferedWriter.flush();
+                    bufferedWriter.close();
+                }
+            }catch(IOException ex){
+                System.out.println("Erreur");
+            }
+        }
     }
     
     
