@@ -11,8 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.Scanner;
 
 /**
@@ -104,15 +102,47 @@ public class PGM {
     public void ecriture(String sourcePath, String filename){
             
         BufferedWriter bufferedWriter=null;
+        int i;
+        int j;
+        int nbChar; //nombre de caractère dans la ligne de texte (test des 70 lignes)
+        int firstLine=0; //indice dans image du premier élément de la ligne d'image traitée
 
         try{
             //Creation du BufferedWriter
             bufferedWriter = new BufferedWriter(new FileWriter(sourcePath + "\\" + filename +".pgm"));
-            //Ecriture du fichier : en-tête
+            //Ecriture de l'image : en-tête
             bufferedWriter.write("P2\n");
             bufferedWriter.write("#\n");
             bufferedWriter.write(this.taille_x + " " + this.taille_y + "\n");
             bufferedWriter.write("255\n");
+            
+            //Ecriture de l'image 
+            //pour chaque ligne de l'image
+            for (i=0;i<taille_y;i++){
+                //initialisation de la ligne
+                bufferedWriter.write(" ");
+                nbChar = 1;
+                //pour chaque caractère de la ligne de l'image
+                for (j=firstLine;j<firstLine+taille_x;j++){
+                    //compte du nombre de caratère sur la ligne de texte avec ajout d'une nouvelle valeur
+                    nbChar += String.valueOf(image.get(j)).length()+1;
+                    //test pour le maximum de 70 caractère sur une ligne de texte
+                    if (nbChar<=70){
+                       //ajout possible
+                       bufferedWriter.write(image.get(j)+" ");
+                    }else{
+                       //ajout impossible, commencement d'une nouvelle ligne de texte
+                       bufferedWriter.newLine();
+                       //mise à jour du nombre de caractères dans la nouvelle ligne de texte
+                       nbChar=String.valueOf(image.get(j)).length()+2;
+                       //ajout du pixel
+                       bufferedWriter.write(" "+image.get(j)+" ");
+                    }
+                }
+                //initialisation de la prochaine ligne d'image
+                bufferedWriter.newLine();
+                firstLine=i + taille_x;
+            }
             
         }catch (FileNotFoundException ex){
             System.out.println("Le fichier image n'a pas pu être créé");
@@ -129,6 +159,11 @@ public class PGM {
                 System.out.println("Erreur");
             }
         }
+    }
+    
+    
+    public void ecritureLigne70(){
+        
     }
     
     
