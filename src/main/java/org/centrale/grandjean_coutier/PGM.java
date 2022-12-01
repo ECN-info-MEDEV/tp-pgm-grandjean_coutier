@@ -4,6 +4,7 @@
  */
 package org.centrale.grandjean_coutier;
 
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Scanner;
 
 /**
  * Classe assurant la gestion des classes PGM
@@ -129,5 +131,51 @@ public class PGM {
         }
     }
     
+    
+    /**
+     * Méthode permettant de lire un fichier pour initialiser les valeurs de l'objet PGM
+     * en fonction de celui-ci
+     * @param pathname : adresse du fichier image PGM
+     * @throws FileNotFoundException 
+     */
+    public void Lecture(String pathname) throws FileNotFoundException{
+        File doc = new File(pathname);
+        Scanner obj = new Scanner(doc);
+        int numLigne = 0;
+        String[] listeNombreString;
+
+        while (obj.hasNextLine()){
+            numLigne += 1;
+            if (numLigne > 4){
+                listeNombreString = obj.nextLine().split(" ");
+                for (String s: listeNombreString){
+                    if (!s.equals("")){
+                        image.add(Integer.parseInt(s));
+                    }
+                }
+            }
+            
+            else if (numLigne == 3){
+                listeNombreString = obj.nextLine().split(" ");
+                int coordonnee = 0;
+                for (String s: listeNombreString){
+                    if (!s.equals("")){
+                        if (coordonnee  == 0){
+                            taille_x = Integer.parseInt(s);
+                        }
+                        else{
+                            taille_y = Integer.parseInt(s);
+                        }
+                        coordonnee = 1; 
+                    }
+                }
+                
+            }
+            else {
+                obj.nextLine();
+            }
+            
+        }
+    }
     
 }
