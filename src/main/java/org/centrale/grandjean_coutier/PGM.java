@@ -161,12 +161,7 @@ public class PGM {
         }
     }
     
-    
-    public void ecritureLigne70(){
-        
-    }
-    
-    
+  
     /**
      * Méthode permettant de lire un fichier pour initialiser les valeurs de l'objet PGM
      * en fonction de celui-ci
