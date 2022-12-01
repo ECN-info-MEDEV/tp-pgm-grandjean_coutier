@@ -120,16 +120,16 @@ public class PGM {
             //pour chaque ligne de l'image
             for (i=0;i<taille_y;i++){
                 //initialisation de la ligne
-                bufferedWriter.write(" ");
-                nbChar = 1;
+                nbChar = 0;
+                firstLine=i*taille_x;
                 //pour chaque caractère de la ligne de l'image
                 for (j=firstLine;j<firstLine+taille_x;j++){
                     //compte du nombre de caratère sur la ligne de texte avec ajout d'une nouvelle valeur
-                    nbChar += String.valueOf(image.get(j)).length()+1;
+                    nbChar += String.valueOf(image.get(j)).length()+2;
                     //test pour le maximum de 70 caractère sur une ligne de texte
                     if (nbChar<=70){
                        //ajout possible
-                       bufferedWriter.write(image.get(j)+" ");
+                       bufferedWriter.write(" "+image.get(j)+" ");
                     }else{
                        //ajout impossible, commencement d'une nouvelle ligne de texte
                        bufferedWriter.newLine();
@@ -140,8 +140,7 @@ public class PGM {
                     }
                 }
                 //initialisation de la prochaine ligne d'image
-                bufferedWriter.newLine();
-                firstLine=i + taille_x;
+                bufferedWriter.newLine(); 
             }
             
         }catch (FileNotFoundException ex){
