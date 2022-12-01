@@ -4,14 +4,22 @@
  */
 package org.centrale.grandjean_coutier;
 
+import java.io.FileNotFoundException;
+
 /**
  *
  * @author Manon Coutier
  */
 public class TestManon {
     public static void main(String[] args) {
-        PGM pgm = new PGM();
-        pgm.ecriture("D:\\Documents\\Centrale\\EI2\\P2\\MEDEV\\TP3\\GRANDJEAN_COUTIER\\GRANDJEAN_COUTIER\\src\\main\\resources", "test");
+        try{
+            PGM pgm = new PGM();          
+            pgm.lecture("D:\\Documents\\Centrale\\EI2\\P2\\MEDEV\\TP3\\GRANDJEAN_COUTIER\\GRANDJEAN_COUTIER\\src\\main\\resources\\baboon.pgm");
+            pgm.ecriture("D:\\Documents\\Centrale\\EI2\\P2\\MEDEV\\TP3\\GRANDJEAN_COUTIER\\GRANDJEAN_COUTIER\\src\\main\\resources", "test");
+        }catch(FileNotFoundException ex){
+            System.out.println("error");
+        }
+        
     }
 
 }
