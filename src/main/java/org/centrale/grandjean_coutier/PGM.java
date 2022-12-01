@@ -138,7 +138,7 @@ public class PGM {
      * @param pathname : adresse du fichier image PGM
      * @throws FileNotFoundException 
      */
-    public void Lecture(String pathname) throws FileNotFoundException{
+    public void lecture(String pathname) throws FileNotFoundException{
         File doc = new File(pathname);
         Scanner obj = new Scanner(doc);
         int numLigne = 0;
@@ -146,6 +146,8 @@ public class PGM {
 
         while (obj.hasNextLine()){
             numLigne += 1;
+            
+            //ligne des valeurs de nuances de gris
             if (numLigne > 4){
                 listeNombreString = obj.nextLine().split(" ");
                 for (String s: listeNombreString){
@@ -155,6 +157,7 @@ public class PGM {
                 }
             }
             
+            // ligne de la taille de l'image
             else if (numLigne == 3){
                 listeNombreString = obj.nextLine().split(" ");
                 int coordonnee = 0;
@@ -171,11 +174,47 @@ public class PGM {
                 }
                 
             }
+            
+            // ligne d'informations non prise en compte pour notre lecture
             else {
                 obj.nextLine();
             }
             
         }
+    }
+    
+    /**
+     * Fonction permettant de créer et enregistrer l'histogramme de l'objet PGM
+     * @param pathnamehist : chemin du dossier où on veut enregistrer l'histogramme
+     * @param nomFichier : nom fichier qui contiendra l'histogramme
+     */
+    public void histogramme(String pathnamehist, String nomFichier){
+        
+        ArrayList<Integer> listeValeurs = new ArrayList();
+        int valueMax = 0;
+        for (int val : this.image){
+            if (val > valueMax){
+                valueMax = val;
+            }
+        }
+        
+        PGM histogramme = new PGM();
+        histogramme.setTaille_x(256);
+        histogramme.setTaille_y(valueMax);
+        
+        //initialise listeValeurs avec des zéros partout
+        for (int i=0; i<256; i++){
+           listeValeurs.add(0);
+        }
+        
+        // complète listeValeurs en fonction du nb de valeurs par couleur
+        for (int val : this.image) {
+            listeValeurs.set(val, listeValeurs.get(val) + 1);
+        }
+
+        
+        
+        
     }
     
 }
