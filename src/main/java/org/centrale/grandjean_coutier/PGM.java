@@ -4,7 +4,10 @@
  */
 package org.centrale.grandjean_coutier;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Classe assurant la gestion des classes PGM
@@ -25,5 +28,28 @@ public class PGM {
      * Tableau des valeurs de chaque pixel
      */
     private ArrayList<ArrayList<Integer>> image;
+    
+    /**
+     * Méthode permettant de lire un fichier pour initialiser les valeurs de l'objet PGM
+     * en fonction de celui-ci
+     * @param pathname : adresse du fichier image PGM
+     * @throws FileNotFoundException 
+     */
+    public void Lecture(String pathname) throws FileNotFoundException{
+        File doc = new File(pathname);
+        Scanner obj = new Scanner(doc);
+        int numLigne = 0;
+
+        while (obj.hasNextLine()){
+            numLigne += 1;
+            if (numLigne > 4){
+                
+            }
+            else if (numLigne == 3){
+                
+            }
+            
+        }
+    }
     
 }
