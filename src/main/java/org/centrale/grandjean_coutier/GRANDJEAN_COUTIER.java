@@ -19,14 +19,11 @@ public class GRANDJEAN_COUTIER {
         
         File doc = new File("C:\\Users\\Laure\\OneDrive\\Documents\\EI2\\MEDEV\\tp-pgm-grandjean_coutier\\src\\main\\resources\\brain.pgm");
         Scanner obj = new Scanner(doc);
-        int numLigne = 0;
 
         while (obj.hasNextLine()){
-            numLigne += 1;
-            if (numLigne > 4){
-            System.out.println(obj.nextInt());}
+            System.out.println(obj.nextLine());
             System.out.println("NOUVELLE LIGNE");
  
         }
-    }
+    }   
 }

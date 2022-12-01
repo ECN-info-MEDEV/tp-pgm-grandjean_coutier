@@ -39,11 +39,15 @@ public class PGM {
         File doc = new File(pathname);
         Scanner obj = new Scanner(doc);
         int numLigne = 0;
+        String[] listeNombreString;
 
         while (obj.hasNextLine()){
             numLigne += 1;
             if (numLigne > 4){
-                
+                listeNombreString = obj.nextLine().split(" ");
+                for (String s: listeNombreString){
+                image.add(Integer.parseInt(s));
+                }
             }
             else if (numLigne == 3){
                 
