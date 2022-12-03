@@ -267,4 +267,23 @@ public class PGM {
         */
     }
     
+    /**
+     * Méthode permettant de filtrer l'image par un seuillage. 
+     * Tous les pixels dont la valeur est strictement inférieure au paramètre seuil sont mis à 0.
+     * Tous les pixels dont la valeur est supérieure au paramètre seuil sont mis à 255.
+     * @param seuil seuil choisi
+     */
+    public void seuillage(int seuil){
+        int i;//itérateur
+        
+        for (i = 0 ; i < image.size(); i++){
+            if (image.get(i) < seuil){
+                image.set(i, 0);
+            }else{
+                image.set(i, 255);
+            }
+        }
+        
+    }
+    
 }
