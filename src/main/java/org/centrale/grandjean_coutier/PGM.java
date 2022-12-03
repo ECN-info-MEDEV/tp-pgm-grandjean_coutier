@@ -250,21 +250,20 @@ public class PGM {
             histogramme.image.add(255);
         }
         
-        // Fin qui fait buguer le bloc précédent
-        /*
+
         // remplit l'image de l'histogramme en fonction des valeurs trouvées précédemment
         for (int j=valueMax; j>0; j--){
             for (int i=1; i<=256; i++){
-                if (listeValeurs.get(i)<=0){
+                if (listeValeurs.get(i-1)>0){
                     histogramme.image.set(i*j-1, 0);
-                    listeValeurs.set(i, listeValeurs.get(i) - 1);
+                    listeValeurs.set(i-1, listeValeurs.get(i-1) - 1);
                 }
             }
         }
         
         histogramme.ecriture(pathnamehist, nomFichier);
 
-        */
+        
     }
     
     /**
