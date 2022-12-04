@@ -18,7 +18,7 @@ public class GRANDJEAN_COUTIER {
     public static void main(String[] args) throws FileNotFoundException {
             
         PGM objet = new PGM();
-        objet.lecture("C:\\Users\\Laure\\OneDrive\\Documents\\EI2\\MEDEV\\tp-pgm-grandjean_coutier\\src\\main\\resources\\simple.pgm");
+        objet.lecture("C:\\Users\\Laure\\OneDrive\\Documents\\EI2\\MEDEV\\tp-pgm-grandjean_coutier\\src\\main\\resources\\baboon.pgm");
         objet.ecriture("C:\\Users\\Laure\\OneDrive\\Bureau", "filename");
         objet.histogramme("C:\\Users\\Laure\\OneDrive\\Bureau", "histo");
     }   

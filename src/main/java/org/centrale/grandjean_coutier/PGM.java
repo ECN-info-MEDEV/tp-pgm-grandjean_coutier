@@ -222,7 +222,7 @@ public class PGM {
         ArrayList<Integer> listeValeurs = new ArrayList();
                 
         //initialise listeValeurs avec des zéros partout
-        for (int i=0; i<256; i++){
+        for (int i=0; i<256; i++){ //256
            listeValeurs.add(0);
         }
         
@@ -240,23 +240,21 @@ public class PGM {
         
         // création de l'objet de l'histogramme
         PGM histogramme = new PGM();
-        histogramme.setTaille_x(256);
+        histogramme.setTaille_x(256);//256
         histogramme.setTaille_y(valueMax);
         
 
-        // FIXME OUT OF BOUND
         //initialise l'image de l'histogramme avec du blanc partout
-        for (int i=0; i<256*valueMax; i++){
+        for (int i=0; i<256*valueMax; i++){ //256
             histogramme.image.add(255);
         }
         
-
         // remplit l'image de l'histogramme en fonction des valeurs trouvées précédemment
-        for (int j=valueMax; j>0; j--){
-            for (int i=1; i<=256; i++){
-                if (listeValeurs.get(i-1)>0){
-                    histogramme.image.set(i*j-1, 0);
-                    listeValeurs.set(i-1, listeValeurs.get(i-1) - 1);
+        for (int j=valueMax-1; j>=0; j--){
+            for (int i=0; i<256; i++){ //256
+                if (listeValeurs.get(i)>0){
+                    histogramme.image.set(256*j+i, 0); //256
+                    listeValeurs.set(i, listeValeurs.get(i) - 1);
                 }
             }
         }
