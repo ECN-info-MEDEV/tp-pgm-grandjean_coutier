@@ -265,4 +265,43 @@ public class PGM {
         
     }
     
+    /**
+     * Méthode permettant de comparer l'image PGM à une autre 
+     * Les pixels différents sont affichés en blanc.
+     * Attention : comparer des images de ratio différent peut créer des résultats non exploitables.
+     * @param comparaison 
+     * @return 
+     */
+    public PGM difference(PGM comparaison){
+        
+        int i;//itérateur
+        PGM diff = new PGM();//image de sortie
+        PGM imageMin;//image de taille minimale
+        PGM imageMax;//image de taille maximale
+        
+        
+        if (this.getImage().size()>= comparaison.getImage().size()){
+            imageMin= comparaison;
+            imageMax = this;
+        }else{
+            imageMin= this;
+            imageMax = comparaison;
+        }
+        
+        diff.setTaille_x(imageMax.getTaille_x());
+        diff.setTaille_y(imageMax.getTaille_y());
+        for (i = 0 ; i < imageMin.getImage().size(); i++){    
+            if (!imageMin.getImage().get(i).equals(imageMax.getImage().get(i))){
+                diff.getImage().add(i, 255);
+            }else{
+                diff.getImage().add(i, 0);
+            }
+        }
+        for (i = imageMin.getImage().size() ; i < imageMax.getImage().size(); i++){
+                diff.getImage().add(i, 255);
+        }     
+        
+        return diff;
+    }
+    
 }
