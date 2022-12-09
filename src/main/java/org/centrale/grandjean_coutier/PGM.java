@@ -220,19 +220,9 @@ public class PGM {
     public void histogramme(String pathnamehist, String nomFichier){
         
         ArrayList<Integer> listeValeurs = new ArrayList();
-        int valueMax = 0;
-        for (int val : this.image){
-            if (val > valueMax){
-                valueMax = val;
-            }
-        }
-        
-        PGM histogramme = new PGM();
-        histogramme.setTaille_x(256);
-        histogramme.setTaille_y(valueMax);
-        
+                
         //initialise listeValeurs avec des zéros partout
-        for (int i=0; i<256; i++){
+        for (int i=0; i<256; i++){ //256
            listeValeurs.add(0);
         }
         
@@ -240,9 +230,37 @@ public class PGM {
         for (int val : this.image) {
             listeValeurs.set(val, listeValeurs.get(val) + 1);
         }
+        
+        int valueMax = 0;
+        for (int val : listeValeurs){
+            if (val > valueMax){
+                valueMax = val;
+            }
+        }
+        
+        // création de l'objet de l'histogramme
+        PGM histogramme = new PGM();
+        histogramme.setTaille_x(256);//256
+        histogramme.setTaille_y(valueMax);
+        
 
+        //initialise l'image de l'histogramme avec du blanc partout
+        for (int i=0; i<256*valueMax; i++){ //256
+            histogramme.image.add(255);
+        }
         
+        // remplit l'image de l'histogramme en fonction des valeurs trouvées précédemment
+        for (int j=valueMax-1; j>=0; j--){
+            for (int i=0; i<256; i++){ //256
+                if (listeValeurs.get(i)>0){
+                    histogramme.image.set(256*j+i, 0); //256
+                    listeValeurs.set(i, listeValeurs.get(i) - 1);
+                }
+            }
+        }
         
+        histogramme.ecriture(pathnamehist, nomFichier);
+
         
     }
     
